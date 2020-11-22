@@ -3,11 +3,36 @@
 *@
 @{
 }
-<p>@ViewBag.error</p>
-<form method="post" action ="/user">
-    Username: <input type="text" name="username">
-    Email: <input type="email" name="email" >
-    Password: <input type="password" name="password">
-    Confirm password: <input type="password" name="verify">
+@if(ViewBag.error !=null){
+    <p>@ViewBag.error</p>
+}
+<form method="post" action="/user">
+    Username:
+    @if (ViewBag.error == null)
+    {
+        <input type="text" name="username" />
+    }
+    else
+    {
+        <input type="text" name="username" value="@ViewBag.username" />
+    }
+    <br />
+    <br />
+    Email:
+    @if (ViewBag.error == null)
+    {
+        <input type="email" name="email" />
+    } else
+    {
+<input type="email" name="email" value="@ViewBag.email" />
+    }
+    <br />
+    <br />
+    Password: <input type="password" name="password" />
+    <br />
+    <br />
+    Confirm password: <input type="password" name="verify" />
+    <br />
+    <br />
     <input type="submit" value="Submit">
 </form>
