@@ -1,42 +1,52 @@
-﻿@{
+﻿@model SpaDay.ViewModels.AddUserViewModel;
+@{
 }
 
 <h1>Sign Up Form</h1>
 
-@if (ViewBag.error != null)
-{
-    <p>@ViewBag.error</p>
-}
 
 <form method="post" action="/user">
-    Username:
     <br>
-    @if (ViewBag.error == null)
-    {
-        <input type="text" name="username" />
-    }
-    else
-    {
-        <input type="text" name="username" value="@ViewBag.userName" />
-    }
+    <div class="form-group">
+        <label asp-for="Username"></label>
+        @if (ViewBag.error == null)
+        {
+            <input asp-for ="Username" />
+            <span asp-validation-for="Username"></span>
+
+        }
+        else
+        {
+            <input asp-for ="Username" value="@Model.Username" />
+            <span asp-validation-for="Username"></span>
+        }
+    </div>
     <br>
-    Email:
+    <div class="form-group">
+        <label asp-for="Email"></label>
+        @if (ViewBag.error == null)
+        {
+            <input asp-for="Email" />
+            <span asp-validation-for="Email"></span>
+        }
+        else
+        {
+            <input asp-for="Email" value="@Model.Email" />
+            <span asp-validation-for="Email"></span>
+        }
+    </div>
     <br>
-    @if (ViewBag.error == null)
-    {
-        <input type="email" name="email" />
-    }
-    else
-    {
-        <input type="email" name="email" value="@ViewBag.eMail" />
-    }
+    <div class="form-group">
+        <label asp-for="Password"></label>
+        <input type="password" asp-for="Password" />
+        <span asp-validation-for="Password"></span>
+    </div>
     <br>
-    Password:
-    <input type="password" name="password" />
-    <br>
-    Confirm Password:
-    <br>
-    <input type="password" name="verify" />
-    <br>
-    <input type='submit' value='Submit'>
+    <div class="form-group">
+        <label asp-for="VerifyPassword">Confirm Password</label>
+        <input type="password" asp-for="VerifyPassword" />
+        <span asp-validation-for="VerifyPassword"></span>
+     </div>
+     <br>
+     <input type='submit' value='Submit'>
 </form>
